@@ -1,0 +1,11 @@
+# Dockerfile for Queue Worker on Google Cloud Run
+# Created by Arun Kumar Singh
+
+FROM gcr.io/${PROJECT_ID}/unopim:latest
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Queue worker entrypoint
+ENTRYPOINT ["php", "artisan", "queue:work", "--queue=system,default", "--tries=3", "--timeout=300"]
+
